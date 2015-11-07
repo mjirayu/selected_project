@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<nav class="navbar navbar-default topnav" role="navigation">
+    <div class="container topnav">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand topnav sg1" href="/" style=" font-size: 18px;">Hungry Spider</a>
+
+        </div>
+    </div>
+  <!-- /.container -->
+</nav>
+
+<div class="container">
+	 <div class="row">
+    <div class="col-lg-12 sg1" >
+      <select style="float:right; margin-top: 0.3em;" onchange="location = this.options[this.selectedIndex].value;">
+        <option>Please select</option>
+        {% for category in categories %}
+          <option value="/search/{{category}}">{{ category }}</option>
+        {% endfor %}
+      </select>​
+      <p style="font-size: 15px;float: right;margin-top: 5px;margin-right: 15px;">โปรดเลือกประเภท</p>
+    </div>
+  </div>
+
+    <div class="row">
+      {% for each in best_of_three %}
+      	<div class= "rank" style="float: left;">
+      		<div class="sub-rank1"><img src="{{ each.image }}" class="img-responsive"></div>
+      		<div class="sub-rank2">
+      			<p style="font-size: 15px;">Rank {{ forloop.counter }}</p>
+      			<p style="font-size: 14px;">{{ each.title }}</p>
+      			<p style="font-size: 12px; margin-top:-5px">Score: {{ each.average }}</p>
+      			<p style="font-size: 12px; margin-top:-5px">Category: {{ each.category }}</p>
+      		</div>
+      	</div>
+      {% endfor %}
+    </div>
+
+  <hr style="border-top: 1px solid gray; width:1090px;">
+
+<div class="container">
+  {% for data in restaurants %}
+    {% if foorloop.counter == 1%}
+      <div class="row list-restaurant">
+          <div class="col-md-6">
+                <div class="col-md-6 list-img">
+                  <img src="{{ data.image }}" class="img-responsive"/>
+                </div>
+                <div class="col-md-6">
+                  <p>{{ data.title }}</p>
+                  <p>{{ data.average }}</p>
+                  <p>{{ data.category }}</p>
+                </div>
+          </div>
+    {% elif forloop.counter|divisibleby:2 %}
+      <div class="col-md-6">
+            <div class="col-md-6 list-img">
+              <img src="{{ data.image }}" class="img-responsive"/>
+            </div>
+            <div class="col-md-6">
+              <p>{{ data.title }}</p>
+              <p>{{ data.average }}</p>
+              <p>{{ data.category }}</p>
+            </div>
+      </div>
+    </div>
+    {% else %}
+      <div class="row list-restaurant">
+          <div class="col-md-6">
+                <div class="col-md-6 list-img">
+                  <img src="{{ data.image }}" class="img-responsive"/>
+                </div>
+                <div class="col-md-6">
+                  <p>{{ data.title }}</p>
+                  <p>{{ data.average }}</p>
+                  <p>{{ data.category }}</p>
+                </div>
+          </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="row">
+    <nav>
+      <ul class="pagination">
+        {% if restaurants.has_previous %}
+          <li class="pull-left">
+            <a href="?page={{ restaurants.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% endif %}
+        <li>
+          <p class="pages">Page {{ restaurants.number }} of {{ restaurants.paginator.num_pages }}.</p>
+        </li>
+        {% if restaurants.has_next %}
+          <li class="pull-right next">
+            <a href="?page={{ restaurants.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $('select option').each(function() {
+    if (decodeURI(document.URL.slice(31, -1)) == $(this).text()) {
+      $(this).prop('selected', 'selected');
+    }
+  })
+</script>
+
+{% endblock %}

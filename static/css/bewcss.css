@@ -1,0 +1,116 @@
+@font-face {
+    font-family: akhanake;
+    src: url("../fonts/Book_Akhanake.ttf");
+}
+@font-face {
+	font-family: bangna;
+	src: url("../fonts/bangna-new.ttf");
+}
+
+.sg1 {
+	font-family: bangna;
+	font-weight: 80;
+	color: #777;
+}
+h2.sg1 {
+	font-family: bangna;
+	font-weight: 80;
+	color: #333;
+}
+h1.sg1{
+	font-family: bangna;
+	color: #333;
+}
+hr {
+  color: #123455;
+}
+.btn-default {
+    color: #272626;
+    border-color: black;
+    font-family: bangna;
+
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    cursor: pointer;
+
+    background: none;
+    border: 1px solid black !important;
+    border-radius: 0px;
+}
+a.btn:hover, a.btn:active {
+background-color: white;
+
+}
+.rank{
+	background-color: rgb(240,239,228);
+	width: 350px;
+	height: 380px;
+	margin: 20px 10px 20px 10px;
+
+}
+.sub-rank1{
+	background-color: white;
+	width: 350px;
+	height: 250px;
+
+}
+.sub-rank1 img{
+	width:100%;
+  max-height:100%;
+  height: 500px;
+}
+.sub-rank2{
+	padding: 10px;
+	font-family: bangna;
+	color: #333;
+}
+.row{
+
+	margin-right: 15px;
+    margin-left: 15px;
+    width: initial;
+}
+
+.list{
+	background-color: rgb(240,239,228);
+	width: 1090px;
+	height: 100px;
+	margin: 20px 10px 20px 10px;
+
+}
+.sub-list1{
+	width: 100px;
+	height: 100px;
+
+}
+.sub-list1 img{
+	width:100%;height:100%
+}
+
+ul.pagination {
+  width: 100%;
+}
+
+.next {
+  position: relative;
+  bottom: 2.15em;
+}
+
+.pages {
+  position: relative;
+  text-align: center;
+}
+
+.list-restaurant {
+  margin-bottom: 1em;
+}
