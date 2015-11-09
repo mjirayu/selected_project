@@ -7,3 +7,4 @@ class RestaurantModel(models.Model):
     province = models.CharField(max_length=200)
     category = models.CharField(max_length=60)
     image = models.CharField(max_length=200)
+    url = models.CharField(max_length=200, null=True)

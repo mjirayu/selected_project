@@ -29,6 +29,7 @@ class WongNaiSpider(CrawlSpider):
         item = WongNaiItem()
         category, province = response.xpath("//div[@class='statistic']/div[@class='item rank']/a/text()").extract()[0].split()
         item['title'] = response.xpath("//a[@class='fn']/span/text()").extract()[0]
+        item['url'] = response.url
         item['average'] = response.xpath("//div[@class='statistic']/div[@itemprop='ratingValue']/text()").extract()[0]
         item['province'] = province
         item['category'] = category

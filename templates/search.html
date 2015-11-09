@@ -34,15 +34,17 @@
 
     <div class="row">
       {% for each in best_of_three %}
-      	<div class= "rank" style="float: left;">
-      		<div class="sub-rank1"><img src="{{ each.image }}" class="img-responsive"></div>
-      		<div class="sub-rank2">
-      			<p style="font-size: 15px;">Rank {{ forloop.counter }}</p>
-      			<p style="font-size: 14px;">{{ each.title }}</p>
-      			<p style="font-size: 12px; margin-top:-5px">Score: {{ each.average }}</p>
-      			<p style="font-size: 12px; margin-top:-5px">Category: {{ each.category }}</p>
-      		</div>
-      	</div>
+        <a href="{{ each.url }}">
+        	<div class= "rank" style="float: left;">
+        		<div class="sub-rank1"><img src="{{ each.image }}" class="img-responsive"></div>
+        		<div class="sub-rank2">
+        			<p style="font-size: 15px;">Rank {{ forloop.counter }}</p>
+        			<p style="font-size: 14px;">{{ each.title }}</p>
+        			<p style="font-size: 12px; margin-top:-5px">Score: {{ each.average }}</p>
+        			<p style="font-size: 12px; margin-top:-5px">Category: {{ each.category }}</p>
+        		</div>
+        	</div>
+        </a>
       {% endfor %}
     </div>
 
@@ -52,30 +54,35 @@
   {% for data in restaurants %}
     {% if foorloop.counter == 1%}
       <div class="row list-restaurant">
-          <div class="col-md-6">
-                <div class="col-md-6 list-img">
-                  <img src="{{ data.image }}" class="img-responsive"/>
-                </div>
-                <div class="col-md-6">
-                  <p>{{ data.title }}</p>
-                  <p>{{ data.average }}</p>
-                  <p>{{ data.category }}</p>
-                </div>
-          </div>
-    {% elif forloop.counter|divisibleby:2 %}
-      <div class="col-md-6">
-            <div class="col-md-6 list-img">
-              <img src="{{ data.image }}" class="img-responsive"/>
-            </div>
+          <a href="{{ data.url }}">
             <div class="col-md-6">
-              <p>{{ data.title }}</p>
-              <p>{{ data.average }}</p>
-              <p>{{ data.category }}</p>
+                  <div class="col-md-6 list-img">
+                    <img src="{{ data.image }}" class="img-responsive"/>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{ data.title }}</p>
+                    <p>{{ data.average }}</p>
+                    <p>{{ data.category }}</p>
+                  </div>
             </div>
-      </div>
+          </a>
+    {% elif forloop.counter|divisibleby:2 %}
+      <a href="{{ data.url }}">
+        <div class="col-md-6">
+              <div class="col-md-6 list-img">
+                <img src="{{ data.image }}" class="img-responsive"/>
+              </div>
+              <div class="col-md-6">
+                <p>{{ data.title }}</p>
+                <p>{{ data.average }}</p>
+                <p>{{ data.category }}</p>
+              </div>
+        </div>
+      </a>
     </div>
     {% else %}
       <div class="row list-restaurant">
+        <a href="{{ data.url }}">
           <div class="col-md-6">
                 <div class="col-md-6 list-img">
                   <img src="{{ data.image }}" class="img-responsive"/>
@@ -86,6 +93,7 @@
                   <p>{{ data.category }}</p>
                 </div>
           </div>
+        </a>
     {% endif %}
   {% endfor %}
 
