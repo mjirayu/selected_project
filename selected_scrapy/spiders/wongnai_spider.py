@@ -34,4 +34,7 @@ class WongNaiSpider(CrawlSpider):
         item['province'] = province
         item['category'] = category
         item['image'] = response.xpath("//div[@class='primary summary-photos']/div/a/img/@src").extract()[0]
-        item.save()
+        try:
+            item.save()
+        except:
+            pass
