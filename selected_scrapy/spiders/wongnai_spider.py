@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from scrapy.spiders import CrawlSpider, Rule
+from scrapy.spiders import CrawlSpider, Rule, Spider
 from scrapy.linkextractors import LinkExtractor
 
 from selected_scrapy.items import WongNaiItem
@@ -15,7 +15,7 @@ class WongNaiSpider(CrawlSpider):
 
     rules = [
        Rule(LinkExtractor(
-            allow=['/restaurants\?areas=\d*&regions=\d*&page.number=\d*&page.size=\d*']),
+            allow=['/restaurants\?regions=\d*&page.number=\d*&page.size=\d*']),
             callback='parse_item',
             follow=True)
     ]
@@ -27,7 +27,7 @@ class WongNaiSpider(CrawlSpider):
 
     def parse_dir_contents(self, response):
         item = WongNaiItem()
-        category, province = response.xpath("//div[@class='statistic']/div[@class='item rank']/a/text()").extract()[0].split()
+        category, province = response.xpath("//div[@class='statistic']/div[@class='item rank wui-item']/a/text()").extract()[0].split()
         item['title'] = response.xpath("//a[@class='fn']/span/text()").extract()[0]
         item['url'] = response.url
         item['average'] = response.xpath("//div[@class='statistic']/div[@itemprop='ratingValue']/text()").extract()[0]
